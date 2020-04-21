@@ -1,5 +1,9 @@
 let board;
 let turn = true;
+let xWins = 0;
+let oWins = 0;
+let playerX = document.getElementById('player1-score');
+let playerO = document.getElementById('player2-score');
 const winning = [
   [0, 1, 2],
   [3, 4, 5],
@@ -22,8 +26,16 @@ const checkWinner = () => {
         oCount++;
       }
     }
-    if (xCount === 3 || oCount === 3) {
-      console.log('WINNER');
+    if (xCount === 3) {
+      alert('Player X is the Winner!');
+      xWins++;
+      playerX.innerHTML = xWins;
+      initiate(true);
+    } else if (oCount === 3) {
+      alert('Player O is the Winner!');
+      oWins++;
+      playerO.innerHTML = oWins;
+      initiate(false);
     }
     xCount = 0;
     oCount = 0;
@@ -36,14 +48,13 @@ const eventHandler = (event) => {
       event.target.innerHTML = 'X';
       board[event.target.id[6]] = 'X';
       turn = false;
-      checkWinner();
     } else {
       event.target.innerHTML = 'O';
       board[event.target.id[6]] = 'O';
       turn = true;
-      checkWinner();
     }
   }
+  checkWinner();
 }
 
 const element = document.getElementById('gameboard');
@@ -55,9 +66,13 @@ const render = () => {
   });
 }
 
-const initiate = () => {
+const initiate = (bool) => {
   board = ['', '', '', '', '', '', '', '', ''];
-  turn = true;
+  if (bool !== undefined) {
+    turn = bool;
+  } else {
+    turn = true;
+  }
   render();
 }
 
