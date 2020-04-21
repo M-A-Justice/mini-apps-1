@@ -40,6 +40,15 @@ const checkWinner = () => {
     xCount = 0;
     oCount = 0;
   });
+  let count = 0;
+  board.forEach((element) => {
+    if (element[0]) {
+      count++;
+    }
+    if (count === 9) {
+      alert('Draw!');
+    }
+  });
 }
 
 const eventHandler = (event) => {
