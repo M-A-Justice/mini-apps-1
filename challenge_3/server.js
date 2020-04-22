@@ -42,15 +42,13 @@ let User = mongoose.model('User', userSchema);
 const PORT = 3000;
 
 app.get('/users', (req, res) => {
-  console.log('hitting');
-  User.find({}, (err, result) => {
-    if (err) {
+  User.find({})
+    .then(item => {
+      res.send(item);
+    })
+    .catch(err => {
       res.status(500).send('unable to retrieve from database');
-    } else {
-
-      res.send(result);
-    }
-  });
+    })
 });
 
 app.post('/', (req, res) => {
@@ -67,3 +65,12 @@ app.post('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Listening at :${PORT}...`);
 });
+
+// User.find({}, (err, result) => {
+//   if (err) {
+//     res.status(500).send('unable to retrieve from database');
+//   } else {
+
+//     res.send(result);
+//   }
+// });
