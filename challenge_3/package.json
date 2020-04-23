@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "build": "babel-watch client/app.jsx"
+    "build": "babel client/app.jsx --out-dir public/compiled --ignore=node_modules,compiled --source-maps inline -w"
   },
   "keywords": [],
   "author": "",
