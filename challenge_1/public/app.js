@@ -46,7 +46,9 @@ const checkWinner = () => {
       count++;
     }
     if (count === 9) {
-      alert('Draw!');
+      if(!alert('Draw!')) {
+        initiate(turn);
+      }
     }
   });
 }
