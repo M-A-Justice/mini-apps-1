@@ -18,8 +18,10 @@ function submit(event) {
     },
     body: json,
   })
-    .then(() => {
+    .then((res) => res.json())
+    .then((data) => {
       document.getElementById('user-json').value = '';
+      console.log(data);
     })
     .catch((error) => {
       console.error('Error', error);

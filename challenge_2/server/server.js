@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const { csvCreator } = require('./script');
 // const path = require('path');
 
 const app = express();
@@ -10,8 +11,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.post('/submit', (req, res) => {
-  console.log(req.body);
-  res.status(200).send();
+  // create csv
+  let csv = csvCreator(req.body);
+  // add csv to response
+  // send response
+  res.status(200).send(csv);
 });
 
 app.listen(PORT, () => {
